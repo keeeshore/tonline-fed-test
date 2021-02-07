@@ -18,5 +18,8 @@ module.exports = {
 		enzymeAdapter: 'react16'
 	},
 	snapshotSerializers: ['enzyme-to-json/serializer'],
-	moduleDirectories: ['node_modules', 'src']
+	moduleDirectories: ['node_modules', 'src'],
+    moduleNameMapper: {
+        "^.+\\.(css|less|scss)$": "identity-obj-proxy"
+    }
 };

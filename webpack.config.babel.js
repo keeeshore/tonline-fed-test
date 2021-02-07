@@ -90,6 +90,33 @@ const images = {
 	}
 };
 
+const scss = {
+    test: /\.s[ac]ss$/i,
+    use: [
+        { loader: 'style-loader' },
+        {
+            loader: 'css-loader',
+            options: {
+                modules: {
+                    localIdentName: "[local]",
+                },
+                sourceMap: true
+            }
+        },
+        { loader: 'sass-loader' },
+        {
+            loader: 'postcss-loader',
+            options: {
+                postcssOptions: {
+                    plugins: [
+                        [ 'autoprefixer', {}, ],
+                    ],
+                },
+            }
+        },
+    ],
+};
+
 export const devPlugins = [
 	new webpack.HotModuleReplacementPlugin(),
 	new webpack.DefinePlugin({
@@ -147,7 +174,12 @@ const defaultConfig = {
 		}
 	},
 	module: {
-		rules: [js, svg, images]
+		rules: [
+			js,
+			svg,
+			images,
+            scss,
+		]
 	},
 	optimization: {
 		splitChunks: {
